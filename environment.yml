@@ -1,0 +1,5 @@
+name: pyff
+dependencies:
+- python=2
+- pip
+- anaconda
