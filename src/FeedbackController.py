@@ -20,6 +20,8 @@
 
 """Main Module for Feedback Controller executable."""
 
+#import pyglet
+#pyglet.options['shadow_window'] = False
 
 import logging
 import logging.handlers

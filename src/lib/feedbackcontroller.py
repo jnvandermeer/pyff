@@ -159,11 +159,24 @@ class UDPDispatcher(asyncore.dispatcher):
             self.decoder = bcixml.XmlDecoder()
             self.encoder = bcixml.XmlEncoder()
         self.create_socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.bind((bcinetwork.LOCALHOST, bcinetwork.FC_PORT))
+
+        # and THIS ... is why it only accepts stuff from Localhost.
+        # and why self.bind? So the asyncore.dispatcher is like-a-socket itself?
+        
+        
+        # UDP server shouldn't care which IP is used to let others connect to it.
+        # since the name of the computer which the server is running on, might be
+        # any given IP address. As long as the port seems to be OK, accept things.
+        # self.bind((bcinetwork.LOCALHOST, bcinetwork.FC_PORT))
+        self.bind(('', bcinetwork.FC_PORT))
 
     def send_signal(self, signal):
         """Send signal to the GUI."""
         data = self.encoder.encode_packet(signal)
+        print(signal.peeraddr[0])
+        print(signal.peeraddr[1])
+
+        #self.socket.sendto(data, (signal.peeraddr[0], signal.peeraddr[1]))
         self.socket.sendto(data, (signal.peeraddr[0], bcinetwork.GUI_PORT))
 
     def handle_connect(self): pass

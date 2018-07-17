@@ -129,4 +129,15 @@ class MainloopFeedback(Feedback):
         Called repeatedly in the mainloop if the Feedback is not paused.
         """
         pass
+    def pause_tick(self):
+        """
+        Called repeatedly in the mainloop if the Feedback is paused.
+        """
+        pass
+
+    def play_tick(self):
+        """
+        Called repeatedly in the mainloop if the Feedback is not paused.
+        """
+        pass
 

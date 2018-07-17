@@ -39,6 +39,7 @@ class BciGui(QtGui.QMainWindow, Ui_MainWindow):
 
 #        self.model = TableModel(self.tableView)
 #        self.tableView.setModel(self.model)
+        self.logger = logging.getLogger("GUI")
 
         self.model = TableModel(self)
         self.proxymodel = QtGui.QSortFilterProxyModel(self)
@@ -80,7 +81,7 @@ class BciGui(QtGui.QMainWindow, Ui_MainWindow):
         QtCore.QObject.connect(self.model, QtCore.SIGNAL("dataChanged(const QModelIndex&, const QModelIndex&)"), self.dataChanged)
         self.feedbacks = []
         self.protocol = protocol
-        self.setFeedbackController(bcinetwork.LOCALHOST, bcinetwork.FC_PORT)
+        #self.setFeedbackController(bcinetwork.LOCALHOST, bcinetwork.FC_PORT)
 
 
     def __del__(self):

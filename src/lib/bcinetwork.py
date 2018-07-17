@@ -22,7 +22,9 @@ import socket
 from lib import bcixml
 
 
+# LOCALHOST = "127.0.0.1"
 LOCALHOST = "127.0.0.1"
+# OWNADDRESS = "10.1.121.28"
 FC_PORT = 12345
 GUI_PORT = 12346
 BUFFER_SIZE = 65535
@@ -56,7 +58,7 @@ class BciNetwork(object):
         if myport != None:
             self.SEND_ONLY = False
             self.srvsocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            self.srvsocket.bind((ip, myport))
+            self.srvsocket.bind(('', myport))
 
         if protocol == 'json':
             self.xmlencoder = bcixml.JsonEncoder()
